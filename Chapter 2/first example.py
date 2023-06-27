@@ -1,4 +1,4 @@
-import cv2, numpy as np
+import numpy as np
 from keras.datasets import mnist
 from keras import models
 from keras import layers
