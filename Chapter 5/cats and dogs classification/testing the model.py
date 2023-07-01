@@ -2,7 +2,7 @@ import cv2, numpy as np, os, keras
 
 testing_data = 'Chapter 5/cats and dogs classification/data/test'
 image_size = (200, 200)
-model = keras.models.load_model('Chapter 5/cats and dogs classification/models/cats_and_dogs_model_vgg16.h5')
+model = keras.models.load_model('Chapter 5/cats and dogs classification/models/cats_and_dogs_model.h5')
 
 for filename in os.listdir(testing_data):
     image = cv2.imread(os.path.join(testing_data, filename))
