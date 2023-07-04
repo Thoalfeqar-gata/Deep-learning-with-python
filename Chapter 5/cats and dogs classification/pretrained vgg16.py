@@ -88,7 +88,8 @@ for layer in base_convnet.layers:
     layer.trainable = False
     
 model.compile(RMSprop(), 'binary_crossentropy', metrics = ['accuracy'])
-history = model.fit(train_generator, steps_per_epoch = train_size / batch_size, epochs = 25, validation_data = validation_generator, validation_steps = validation_size / batch_size)
+callback = EarlyStopping(monitor = 'val_accuracy', patience = 5, verbose = 1, restore_best_weights = True)
+history = model.fit(train_generator, steps_per_epoch = train_size / batch_size, epochs = 20, validation_data = validation_generator, validation_steps = validation_size / batch_size, callbacks = [callback])
 model.save('Chapter 5/cats and dogs classification/models/cats_and_dogs_model_vgg16.h5')
 
 history_dict = history.history
@@ -119,7 +120,7 @@ for layer in base_convnet.layers:
     layer.trainable = set_trainable
 
 model.compile(RMSprop(1e-5), 'binary_crossentropy', metrics = ['accuracy'])
-history = model.fit(train_generator, steps_per_epoch = train_size / batch_size, epochs = 25, validation_data = validation_generator, validation_steps = validation_size / batch_size)
+history = model.fit(train_generator, steps_per_epoch = train_size / batch_size, epochs = 20, validation_data = validation_generator, validation_steps = validation_size / batch_size, callbacks = [callback])
 model.save('Chapter 5/cats and dogs classification/models/cats_and_dogs_model_vgg16_fine_tuned.h5')
 
 history_dict = history.history
