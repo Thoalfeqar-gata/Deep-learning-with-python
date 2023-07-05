@@ -4,7 +4,8 @@ from matplotlib import pyplot as plt
 def loss_function(x): #Think of this as the loss function
     return x**4 - 8*x**2 + 16
 
-def derivative(x, h = 1e-8):
+
+def derivative(x, h = 1e-12):
     '''
     The general formula for the derivative of any function is:
     d = (f(x + h) - f(x)) / ((x + h) - (x))
@@ -12,13 +13,15 @@ def derivative(x, h = 1e-8):
     
     return (loss_function(x + h) - loss_function(x)) / (h)
 
+
 def gradient_descent(initial_point):
 
     plt.figure('Loss function')
-    learning_rate = 0.001
+    learning_rate = 1e-5
     current_point = initial_point
-    epochs = 1000
-    timeout = 1
+    epochs = 10000
+    time_to_finish = 10
+    timeout = time_to_finish / epochs
     samples = 10000
     
     for i in range(epochs):  
@@ -40,7 +43,6 @@ def gradient_descent(initial_point):
         else:
             plt.show()
 
-        timeout -= 1/epochs
         current_point -= derivative(current_point) * learning_rate
                 
-gradient_descent(initial_point = 1)
+gradient_descent(initial_point = 5)

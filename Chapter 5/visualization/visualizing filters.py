@@ -37,7 +37,7 @@ def generate_pattern(layer_name, filter_index, size = 150):
     
     return deprocess_image(input_img_data[0])
 
-layer_name = 'block1_conv1'
+layer_name = 'block4_conv1'
 size = 128
 margin = 5
 axis_image_count = 8
@@ -54,5 +54,5 @@ for i in range(axis_image_count):
         vertical_end = vertical_start + size
         results[horizontal_start : horizontal_end, vertical_start : vertical_end] = filter_image
 
-cv2.imshow('hi', results)
+cv2.imshow('Filter patterns', results)
 cv2.waitKey(0)
